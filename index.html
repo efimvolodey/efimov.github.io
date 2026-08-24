@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>efimov.github.io</title>
+<style>
+  body { font-family: sans-serif; background: #111; color: #eee; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+  #gate { text-align: center; }
+  #gate input { padding: 8px; font-size: 16px; border-radius: 4px; border: 1px solid #444; }
+  #gate button { padding: 8px 16px; font-size: 16px; margin-left: 8px; border-radius: 4px; border: none; cursor: pointer; }
+  #content { display: none; text-align: center; }
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <p>Введите пароль</p>
+  <input type="password" id="pw" onkeydown="if(event.key==='Enter') checkPassword()">
+  <button onclick="checkPassword()">Войти</button>
+</div>
+
+<div id="content">
+  <h1>Добро пожаловать</h1>
+  <p>Здесь будет содержимое сайта.</p>
+</div>
+
+<script>
+function checkPassword() {
+  const input = document.getElementById('pw').value;
+  if (input === '113525') {
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+    sessionStorage.setItem('authed', '1');
+  } else {
+    alert('Неверный пароль');
+  }
+}
+if (sessionStorage.getItem('authed') === '1') {
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('content').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
